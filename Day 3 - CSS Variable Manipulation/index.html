@@ -1,0 +1,48 @@
+<html>
+<head>
+	<title>CSS Variable Manipulation :: JavaScript Demo</title>
+	<link rel="stylesheet" type="text/css" href="./resources/style.css">
+
+	<meta name="author" content="Shamah M Zoha">
+	<meta name="description" content="Created being inspired by JavaScript 30 Tutorial by Wes Bos">
+</head>
+<body>
+	<div class="container">
+		<div class="row">
+			<h2 class="hl">CSS</h2>&nbsp;
+			<h2>Variable Manipulation</h2>
+		</div>
+
+		<div class="row">
+			<h5>Border Size:</h5>&nbsp;
+			<input name="border" type="range" min="1" max="100" value="10" data-unit="px"/>
+		</div>
+
+		<div class="row">
+			<h5>Fade Amount:</h5>&nbsp;
+			<input name="blur" type="range" min="0" max="20" value="5" data-unit="px"/>
+		</div>
+
+		<div class="row">
+			<h5>Color:</h5>&nbsp;
+			<input name="color" type="color" value="#9A87A9"/>
+		</div>
+
+		<div class="row">
+			<img name="flower" src="./resources/flower.jpg"/>
+		</div>
+	</div>
+
+	<script>
+		const inputs = document.querySelectorAll('input');
+
+		inputs.forEach(input => input.addEventListener('change', changeParam));
+		inputs.forEach(input => input.addEventListener('mousemove', changeParam));
+
+		function changeParam(e) {
+			const unit = this.dataset.unit || '';
+			document.documentElement.style.setProperty(`--${this.name}`, this.value + unit);
+		}
+	</script>
+</body>
+</html>

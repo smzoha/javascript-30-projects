@@ -1,0 +1,56 @@
+<html>
+<head>
+	<title>CSS&nbsp;Clock&nbsp;::&nbsp;JavaScript&nbsp;Demo</title>
+	<link rel="stylesheet" type="text/css" href="resources/style.css">
+
+	<meta name="author" content="Shamah M Zoha">
+	<meta name="description" content="Created being inspired by JavaScript 30 Tutorial by Wes Bos">
+</head>
+
+<body>
+	<div class="clock-face">
+		<div class="hand hour"></div>
+		<div class="hand min"></div>
+		<div class="hand sec"></div>
+	</div>
+
+	<a href="https://unsplash.com/photos/Wft1QrsY-8g" class="credit">
+		Photo by Adnanta Raharja (@adnantaputra), unsplash.com
+	</a>
+</body>
+
+<script>
+	const hourHand = document.querySelector('.hour');
+	const minHand = document.querySelector('.min');
+	const secondHand = document.querySelector('.sec');
+
+	function getDate() {
+		const nowDateTime = new Date();
+		
+		const secondDeg = ((nowDateTime.getSeconds() / 60) * 360) + 90;
+
+		if (secondDeg == 90) secondHand.style.transition = null;
+		else secondHand.style.transition = 'all 0.5s';
+
+		secondHand.style.transform = `rotate(${secondDeg}deg)`;
+
+		const minDeg = ((nowDateTime.getMinutes() / 60) * 360) + 90;
+
+		if (minDeg == 90) minHand.style.transition = null;
+		else minHand.style.transition = 'all 0.5s';
+
+		minHand.style.transform = `rotate(${minDeg}deg)`;
+
+		let hour = nowDateTime.getHours();
+		hour = hour > 12 ? hour - 12 : hour;
+		const hourDeg = ((hour / 12) * 360) + 90;
+
+		if (hourDeg == 90) hourHand.style.transition = null;
+		else hourHand.style.transition = 'all 0.5s';
+
+		hourHand.style.transform = `rotate(${hourDeg}deg)`;
+	}
+
+	setInterval(getDate, 1000);
+</script>
+</html>

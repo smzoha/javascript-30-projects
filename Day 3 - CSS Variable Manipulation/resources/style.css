@@ -1,0 +1,42 @@
+:root {
+	--border: 10px;
+	--blur: 5px;
+	--color: rgb(154, 135, 169);
+}
+
+body {
+	background: rgb(9, 20, 38);
+	color: rgb(255, 255, 255);
+	font-family: sans-serif;
+}
+
+.container {
+	display: block;
+}
+
+.row {
+	align-items: center;
+	display: flex;
+	justify-content: center;
+}
+
+.hl {
+	color: var(--color);
+}
+
+img {
+	border: var(--border) solid var(--color);
+	filter: blur(var(--blur));
+}
+
+.link {
+	color: rgb(255, 255, 255);
+	padding-top: 10px;
+	text-decoration: none;
+	text-shadow: -1px 0px 2px #000000, 1px 0px 2px #000000, 0px -1px 2px #000000, 0px 1px 2px #000000;
+}
+
+.link a {
+	color: rgb(255, 255, 255);
+	text-decoration: none;
+}

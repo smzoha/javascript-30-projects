@@ -1,0 +1,54 @@
+body {
+	align-items: center;
+	background-image: url('https://source.unsplash.com/Wft1QrsY-8g/1920x1080');
+	display: flex;
+	flex: 1;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.clock-face {
+	align-items: center;
+	box-shadow: 2px 2px 5px black;
+	border: solid 5px white;
+	border-radius: 500px;
+	height: 500px;
+	width: 500px;
+	position: relative;
+}
+
+.hand {
+	height: 6px;
+	position: absolute;
+	top: 50%;
+	transform: rotate(90deg);
+	transform-origin: 100%;
+	transition-timing-function: cubic-bezier(0.42, 0, 0, 0.96);
+}
+
+.hour {
+	background: rgb(229, 229, 229);
+	left: 10%;
+	width: 40%;
+}
+
+.min {
+	background: rgb(150, 150, 150);
+	left: 5%;
+	width: 45%;
+}
+
+.sec {
+	background: red;
+	left: 2%;
+	width: 48%;
+}
+
+.credit {
+	color: white;
+	font-family: sans-serif;
+	font-size: 12px;
+	padding-top: 30px;
+	text-decoration: none;
+	text-shadow: -1px 0px 2px #000000, 1px 0px 2px #000000, 0px -1px 2px #000000, 0px 1px 2px #000000;
+}
