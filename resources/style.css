@@ -1,0 +1,60 @@
+html {
+	background-image: url("./image/piano.jpg");
+	background-size: cover;
+	font-family: sans-serif;
+}
+
+.container {
+	display: block;
+}
+
+.chords {
+	align-items: center;
+	display: flex;
+	height: 94%;
+	justify-content: center;
+}
+
+.chord {
+	background: rgba(50, 50, 50, 0.9);
+	box-shadow: 0px 0px 20px rgba(0, 150, 250, 0.8);
+	border-radius: 20px;
+	color: rgb(255, 255, 255);
+	display: block;
+	margin: 15px;
+	padding: 5px;
+	width: 100px;
+	transition: all 0.7s;
+	text-align: center;
+	user-select: none;
+}
+
+.key-name {
+	font-size: 30pt;
+}
+
+.note-name {
+	font-size: 15pt;
+	text-transform: uppercase;
+}
+
+.keypress {
+	transform: scale(1.1);
+	box-shadow: 0px 0px 25px rgba(0, 250, 200, 0.8);
+}
+
+.info {
+	color: white;
+	font-size: 12px;
+	text-align: center;
+	text-shadow: -1px 0px 2px #000000, 1px 0px 2px #000000, 0px -1px 2px #000000, 0px 1px 2px #000000;
+}
+
+.info a {
+	color: white;
+	text-decoration: none;
+}
+
+.info a:hover {
+	color: pink;
+}

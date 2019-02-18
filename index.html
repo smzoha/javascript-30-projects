@@ -1,0 +1,81 @@
+<html>
+<head>
+	<title>Virtual&nbsp;Piano :: JavaScript Demo</title>
+	<link rel="stylesheet" type="text/css" href="resources/style.css">
+</head>
+
+<body>
+	<div class="container">
+		<div class="chords">
+			<div data-key="83" class="chord">
+				<span class="key-name">S</span><br/>
+				<span class="note-name">Do</span>
+			</div>
+			<div data-key="68" class="chord">
+				<span class="key-name">D</span><br/>
+				<span class="note-name">Re</span>
+			</div>
+			<div data-key="70" class="chord">
+				<span class="key-name">F</span><br/>
+				<span class="note-name">Mi</span>
+			</div>
+			<div data-key="71" class="chord">
+				<span class="key-name">G</span><br/>
+				<span class="note-name">Fa</span>
+			</div>
+			<div data-key="72" class="chord">
+				<span class="key-name">H</span><br/>
+				<span class="note-name">So</span>
+			</div>
+			<div data-key="74" class="chord">
+				<span class="key-name">J</span><br/>
+				<span class="note-name">La</span>
+			</div>
+			<div data-key="75" class="chord">
+				<span class="key-name">K</span><br/>
+				<span class="note-name">Ti</span>
+			</div>
+		</div>
+
+		<div class="info">
+			Background Image:
+			<a href="https://flic.kr/p/brKpP8" target="_blank">Piano by Eunbyul Sabrina Lee @ Flickr</a>;
+			Sounds:
+			<a href="https://freesound.org/people/Jaz_the_MAN_2/packs/17749/" target="_blank">Jaz the Man 2 @ FreeSound.org</a><br/>
+			All items used are licensed under Creative Commons
+		</div>
+	</div>
+
+	<audio data-key="83" src="./resources/sounds/do.wav"/>
+	<audio data-key="68" src="./resources/sounds/re.wav"/>
+	<audio data-key="70" src="./resources/sounds/mi.wav"/>
+	<audio data-key="71" src="./resources/sounds/fa.wav"/>
+	<audio data-key="72" src="./resources/sounds/so.wav"/>
+	<audio data-key="74" src="./resources/sounds/la.wav"/>
+	<audio data-key="75" src="./resources/sounds/ti.wav"/>
+</body>
+
+<script type="text/javascript">
+	function playNote(e) {
+		const note = document.querySelector(`audio[data-key="${e.keyCode}"]`);
+		const key = document.querySelector(`.chord[data-key="${e.keyCode}"]`);
+
+		if (!note) return;
+		
+		note.currentTime = 0;	
+		note.play();
+
+		key.classList.add('keypress');
+	}
+
+	function removeTransition(e) {
+		if (e.propertyName !== 'transform') return;
+		this.classList.remove('keypress');
+	}
+
+	const chords = document.querySelectorAll('.chord');
+	chords.forEach(key => key.addEventListener("transitionend", removeTransition));
+
+	window.addEventListener("keydown", playNote);
+</script>
+</html>
