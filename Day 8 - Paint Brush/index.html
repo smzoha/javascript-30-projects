@@ -1,0 +1,88 @@
+<html>
+<head>
+	<title>Paint Brush :: JavaScript Demo</title>
+	<link rel="stylesheet" type="text/css" href="./resources/style.css">
+
+	<meta name="author" content="Shamah M Zoha">
+	<meta name="description" content="Created being inspired by JavaScript 30 Tutorial by Wes Bos">
+</head>
+
+<body>
+	<div class="navbar">
+		<div class="item-group">
+			<h5>Brush Color:</h5>
+			<input type="color" name="brushColor" value="#000000"/>
+		</div>
+
+		<div class="item-group">
+			<h5>Brush Size:</h5>
+
+			<input type="radio" name="brushSize" value="1" checked="true"/>
+			<h6>Pencil</h6>
+
+			<input type="radio" name="brushSize" value="5"/>
+			<h6>Small</h6>
+
+			<input type="radio" name="brushSize" value="10"/>
+			<h6>Medium</h6>
+
+			<input type="radio" name="brushSize" value="15"/>
+			<h6>Large</h6>
+		</div>
+	</div>
+
+	<div class="canvasContainer">
+		<canvas id="drawable" height="200" width="200"/>
+	</div>
+</body>
+
+<script type="text/javascript">
+	const drawable = document.querySelector('#drawable');
+	const drawableContext = drawable.getContext("2d");
+	
+	const brushColor = document.querySelector('input[name="brushColor"]');
+	const brushSizes = document.querySelectorAll('input[name="brushSize"]');
+
+	drawable.height = window.innerHeight * 0.95;
+	drawable.width = window.innerWidth;
+
+	drawableContext.lineJoin = "round";
+	drawableContext.lineCap = "round";
+
+	var isDrawing = false;
+	var lastX = 0, lastY = 0;
+
+	function drawPath(e) {
+		if (!isDrawing) return;
+
+		drawableContext.beginPath();
+		drawableContext.moveTo(lastX, lastY);
+		drawableContext.lineTo(e.offsetX, e.offsetY);
+		drawableContext.stroke();
+		drawableContext.closePath();
+
+		[lastX, lastY] = [e.offsetX, e.offsetY];
+	}
+
+	function prepareBrush(e) {
+		isDrawing = true;
+		[lastX, lastY] = [e.offsetX, e.offsetY];
+	}
+
+	function changeBrushColor(e) {
+		drawableContext.strokeStyle = this.value;
+	}
+
+	function changeBrushSize(e) {
+		drawableContext.lineWidth = this.value;
+	}
+
+	drawable.addEventListener('mousedown', prepareBrush);
+	drawable.addEventListener('mousemove', drawPath);
+	drawable.addEventListener('mouseup', () => isDrawing = false);
+	drawable.addEventListener('mouseout', () => isDrawing = false);
+
+	brushColor.addEventListener('change', changeBrushColor);
+	brushSizes.forEach(brushSize => brushSize.addEventListener('click', changeBrushSize));
+</script>
+</html>
